@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# cached market data and generated output
+data/
+reports/
+
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
