@@ -24,6 +24,14 @@ features do not produce a tradeable edge on liquid index ETFs after costs.**
 That is the expected answer, and being able to demonstrate it rigorously is worth
 more than a backtest that claims otherwise.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="results/cross_section_alpha_dark.png">
+  <img alt="Timing alpha t-statistics across eight sector ETFs, all inside the insignificance band" src="results/cross_section_alpha_light.png">
+</picture>
+
+**[→ Full results, figures and diagnostics](results/RESULTS.md)**, including the
+backtest that lied and how it got caught.
+
 ## Quickstart
 
 ```bash
@@ -52,16 +60,23 @@ python run.py --ticker SPY XLE XLF XLK XLV XLI XLP XLU --start 1999-01-01
 python tests/test_pipeline.py
 ```
 
+Regenerate every figure and number in [results/](results/):
+
+```bash
+python make_results.py
+```
+
 ## How it works
 
 ```
-data.py      yfinance download, split/dividend adjusted, cached to parquet
-features.py  26 stationary features from OHLCV
-labels.py    forward return -> up/down with a volatility-scaled deadband
-model.py     pipelines + expanding-window walk-forward with an embargo
-backtest.py  positions, costs, matched-exposure benchmark, timing alpha
-evaluate.py  calibration, per-year stability, permutation importance, plots
-run.py       orchestration and CLI
+src/data.py       yfinance download, split/dividend adjusted, cached to parquet
+src/features.py   26 stationary features from OHLCV
+src/labels.py     forward return -> up/down with a volatility-scaled deadband
+src/model.py      pipelines + expanding-window walk-forward with an embargo
+src/backtest.py   positions, costs, matched-exposure benchmark, timing alpha
+src/evaluate.py   calibration, per-year stability, permutation importance, plots
+run.py            exploration CLI, prints to the terminal
+make_results.py   writes the committed artifacts in results/
 ```
 
 ### Features

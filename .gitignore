@@ -4,7 +4,8 @@ __pycache__/
 venv/
 env/
 
-# cached market data and generated output
+# cached market data, and scratch plots from run.py
+# (results/ IS tracked -- it is the committed output of make_results.py)
 data/
 reports/
 
